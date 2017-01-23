@@ -42,6 +42,9 @@ function createQuestion(player, type, cb) {
   });
 }
 
+
+//NEED TO CONVERT THESE ALL TO THE RIGHT INDEXING
+//INDEXES OFF BY A BIT BECAUSE OF THE EXTRA COLUMNS
 function checkRows(row) {
   var initialPiece = board[i][1][0];
   for (var i = 1; i < 3; i++) {
@@ -53,11 +56,28 @@ function checkRows(row) {
 }
 
 function checkColumns(column) {
-  var initialPiece;
-  for (var j = 0; j < 3; j++) {
-    initialPiece = board[j][1][column];
-    if 
+  var initialPiece = board[0][1][column];
+  for (var j = 1; j < 3; j++) {
+    if (board[j][1][column] !== initialPiece) {
+      return false;
+    }
   }
+  return true;
+}
+
+function checkRightDiagonal() {
+  var initialPiece1 = board[0][1][0];
+  for (var j = 1; j < 3; j++) {
+    if (board[j][1][j] !== initialPiece) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkLeftDiagonal() {
+  var initialPiece2 = board[0][1][2];
+
 }
 
 createQuestion(1, 'pick', () => {
